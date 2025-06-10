@@ -1,12 +1,50 @@
 ﻿<Window x:Class="Carsalesbyhoho.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Carsalesbyhoho"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        xmlns:views="clr-namespace:Carsalesbyhoho.Views"
+        Title="Car Sales App"
+        Width="430" Height="800"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen">
 
-    </Grid>
+    <Border Background="#121212" CornerRadius="30" BorderBrush="Gray" BorderThickness="1">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="70" />
+            </Grid.RowDefinitions>
+
+           
+
+            <!-- 📦 Main view content -->
+            <ContentControl x:Name="MainContent" Grid.Row="1" Margin="10"/>
+
+            <!-- 🧭 Bottom navigation bar -->
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="2"
+                        Background="{StaticResource PrimaryBlack}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="0,5,0,10"
+                        Height="60">
+
+                <Button Content="🏠" Width="60" FontSize="24"
+                        Click="HomeMenu_Click"
+                        Style="{StaticResource BottomNavButtonStyle}" />
+
+                <Button Content="🚗" Width="60" FontSize="24"
+                        Click="AutoMenu_Click"
+                        Style="{StaticResource BottomNavButtonStyle}" />
+
+                <Button Content="👥" Width="60" FontSize="24"
+                        Click="VisitorMenu_Click"
+                        Style="{StaticResource BottomNavButtonStyle}" />
+            </StackPanel>
+        </Grid>
+    </Border>
 </Window>

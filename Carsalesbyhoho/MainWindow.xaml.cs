@@ -10,27 +10,47 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Carsalesbyhoho.Views;
+using System.Windows;
+
 namespace Carsalesbyhoho
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        private bool IsAdmin;
+
         public MainWindow()
         {
             InitializeComponent();
-            Content = new VisitorView();
-
+            MainContent.Content = new HomeView(); // standaard
         }
 
-        private bool IsAdmin;
-
-        public MainWindow(bool isAdmin)
+        public MainWindow(bool isAdmin) : this() // chained constructor
         {
-            InitializeComponent();
             IsAdmin = isAdmin;
             DataContext = new MainViewModel(IsAdmin);
         }
+
+        private void HomeMenu_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new HomeView();
+        }
+
+        private void AutoMenu_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new CarView(); // Of AutoListView
+        }
+
+        private void VisitorMenu_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new VisitorView();
+        }
+
+        //private void FavoritesMenu_Click(object sender, RoutedEventArgs e)
+        //{
+        //    // check login hier later
+        //    MainContent.Content = new FavoritesView();
+        //}
+
     }
 }

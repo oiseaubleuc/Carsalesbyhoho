@@ -28,6 +28,8 @@ namespace Carsalesbyhoho.ViewModels
         {
             _context = new AppDbContext();
             Autos = new ObservableCollection<Auto>(_context.Autos.ToList());
+
+
         }
 
         [RelayCommand]
@@ -64,5 +66,7 @@ namespace Carsalesbyhoho.ViewModels
                 }
             }
         }
+
+       
     }
 }

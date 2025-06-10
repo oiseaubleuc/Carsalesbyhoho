@@ -11,39 +11,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Carsalesbyhoho.ViewModels;
-using Carsalesbyhoho.Views;
-
-
-
-
 
 namespace Carsalesbyhoho.Views
 {
     /// <summary>
-    /// Interaction logic for CarView.xaml
+    /// Interaction logic for AutoDetails.xaml
     /// </summary>
-    public partial class CarView : UserControl
+    public partial class AutoDetails : Window
     {
-        public CarView()
+        public AutoDetails()
         {
             InitializeComponent();
         }
-
         private void DetailsButton_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button btn && btn.DataContext is Auto auto)
+            if (sender is Button btn && btn.DataContext is Auto selectedAuto)
             {
-                var vm = new AutoDetailsViewModel { Auto = auto };
-                var view = new AutoDetails { DataContext = vm };
-                var detailsWindow = new AutoDetails
+                var window = new AutoDetails
                 {
-                    DataContext = auto
+                    DataContext = selectedAuto
                 };
-                detailsWindow.ShowDialog();
-
+                window.ShowDialog();
             }
         }
 

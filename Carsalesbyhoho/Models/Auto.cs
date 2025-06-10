@@ -15,9 +15,11 @@ namespace Carsalesbyhoho.Models
 
         public int MerkId { get; set; }
         public Brand Brand { get; set; }
-
+        public string Status { get; set; }
         public int AutoTypeId { get; set; }
         public AutoType AutoType { get; set; }
+        public string ImagePath { get; set; }
+
 
         public ICollection<Verkoop> Verkopen { get; set; }
         public string AfbeeldingUrl { get; set; } = "https://via.placeholder.com/280x140.png?text=Auto";
