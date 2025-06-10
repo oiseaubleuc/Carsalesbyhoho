@@ -1,40 +1,52 @@
 ﻿using Carsalesbyhoho.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Carsalesbyhoho.Views
 {
     /// <summary>
     /// Interaction logic for AutoDetails.xaml
     /// </summary>
-    public partial class AutoDetails : Window
+    public partial class AutoDetails : UserControl
     {
         public AutoDetails()
         {
             InitializeComponent();
         }
-        private void DetailsButton_Click(object sender, RoutedEventArgs e)
+
+        public void SetAuto(Auto auto)
         {
-            if (sender is Button btn && btn.DataContext is Auto selectedAuto)
+            if (auto == null) return;
+
+            // Tekstvakken instellen
+            TitleText.Text = $"{auto.Brand?.Naam ?? "Onbekend merk"} {auto.Model ?? "Onbekend model"}";
+            PriceText.Text = $"€ {auto.Prijs:N0}";
+            DescriptionText.Text = $"Bouwjaar: {auto.Bouwjaar}";
+            DescriptionText.Text += $"\nType: {auto.AutoType?.Omschrijving ?? "Onbekend"}";
+            DescriptionText.Text += $"\nStatus: {auto.Status ?? "Niet gespecificeerd"}";
+
+            // Afbeelding instellen
+            try
             {
-                var window = new AutoDetails
-                {
-                    DataContext = selectedAuto
-                };
-                window.ShowDialog();
+                var folder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images");
+                var imagePath = Path.Combine(folder, auto.ImagePath ?? "");
+
+                string fullImage = File.Exists(imagePath) ? imagePath : auto.AfbeeldingUrl;
+
+                var imageUri = fullImage.StartsWith("http", StringComparison.OrdinalIgnoreCase)
+                    ? new Uri(fullImage)
+                    : new Uri(fullImage, UriKind.Absolute);
+
+                AutoImage.Source = new BitmapImage(imageUri);
+            }
+            catch (Exception ex)
+            {
+                AutoImage.Source = null;
+                Console.WriteLine($"[Fout bij laden afbeelding]: {ex.Message}");
             }
         }
-
     }
 }

@@ -31,19 +31,21 @@ namespace Carsalesbyhoho
             DataContext = new MainViewModel(IsAdmin);
         }
 
-        private void HomeMenu_Click(object sender, RoutedEventArgs e)
+
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             MainContent.Content = new HomeView();
         }
 
-        private void AutoMenu_Click(object sender, RoutedEventArgs e)
+        private void CarsButton_Click(object sender, RoutedEventArgs e)
         {
-            MainContent.Content = new CarView(); // Of AutoListView
+            MainContent.Content = new CarView();
         }
 
-        private void VisitorMenu_Click(object sender, RoutedEventArgs e)
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            MainContent.Content = new VisitorView();
+            var login = new LoginWindow();
+            login.ShowDialog();
         }
 
         //private void FavoritesMenu_Click(object sender, RoutedEventArgs e)

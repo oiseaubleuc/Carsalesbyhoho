@@ -30,7 +30,7 @@ namespace Carsalesbyhoho.Views
             // Simpele check
             if (username == "admin" && password == "admin123")
             {
-                MainWindow main = new MainWindow(true); 
+                MainWindow main = new MainWindow(true);
                 main.Show();
                 this.Close();
             }
@@ -39,5 +39,11 @@ namespace Carsalesbyhoho.Views
                 MessageBox.Show("Ongeldige inloggegevens", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        private void RegisterLink_Click(object sender, RoutedEventArgs e)
+        {
+            var registerWindow = new Register();
+            registerWindow.ShowDialog();
+        }
+
     }
 }

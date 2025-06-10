@@ -34,15 +34,15 @@
                         Height="60">
 
                 <Button Content="🏠" Width="60" FontSize="24"
-                        Click="HomeMenu_Click"
+                        Click="HomeButton_Click"
                         Style="{StaticResource BottomNavButtonStyle}" />
 
                 <Button Content="🚗" Width="60" FontSize="24"
-                        Click="AutoMenu_Click"
+                        Click="CarsButton_Click"
                         Style="{StaticResource BottomNavButtonStyle}" />
 
                 <Button Content="👥" Width="60" FontSize="24"
-                        Click="VisitorMenu_Click"
+                        Click="LoginButton_Click"
                         Style="{StaticResource BottomNavButtonStyle}" />
             </StackPanel>
         </Grid>

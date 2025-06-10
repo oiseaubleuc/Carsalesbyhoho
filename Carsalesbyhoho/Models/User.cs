@@ -12,12 +12,20 @@ namespace Carsalesbyhoho.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Gebruikersnaam is verplicht")]
+        [StringLength(50, MinimumLength = 3)]
         public string Gebruikersnaam { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Wachtwoord is verplicht")]
+        [StringLength(100, MinimumLength = 6)]
         public string Wachtwoord { get; set; }
 
+        [EmailAddress]
+        public string Email { get; set; }
+
         public string Rol { get; set; } = "Bezoeker";
+
+        public DateTime GeregistreerdOp { get; set; } = DateTime.Now;
     }
+
 }
