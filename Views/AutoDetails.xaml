@@ -4,60 +4,52 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             Background="#FF1E1E1E"
-             d:DesignHeight="640"
-             d:DesignWidth="360">
+             d:DesignHeight="640" d:DesignWidth="360"
+             Background="#FF1E1E1E">
 
     <ScrollViewer>
-        <StackPanel Margin="20" VerticalAlignment="Top">
+        <StackPanel Margin="20">
 
-            <!-- Afbeelding -->
-            <Border CornerRadius="10" Background="#333" Height="200" Margin="0,0,0,20">
-                <Image x:Name="AutoImage"
-                       Stretch="UniformToFill"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"/>
-            </Border>
-
-            <!-- Titel -->
-            <TextBlock x:Name="TitleText"
-                       Text="Merk Model"
-                       FontSize="24"
+            <TextBlock Text="Auto details"
+                       FontSize="22"
                        FontWeight="Bold"
                        Foreground="White"
+                       Margin="0,0,0,20"/>
+
+            <Image x:Name="CarImage"
+                   Height="180"
+                   Stretch="UniformToFill"
+                   Margin="0,0,0,20"/>
+
+            <TextBlock Text="Model:" Foreground="White" FontWeight="Bold"/>
+            <TextBlock x:Name="ModelTextBlock"
+                       Foreground="#FFEF6C00"
                        Margin="0,0,0,10"/>
 
-            <!-- Prijs -->
-            <TextBlock x:Name="PriceText"
-                       Text="€ 0,00"
-                       FontSize="20"
-                       FontWeight="SemiBold"
+            <TextBlock Text="Prijs (€):" Foreground="White" FontWeight="Bold"/>
+            <TextBlock x:Name="PrijsTextBlock"
                        Foreground="#FFEF6C00"
-                       Margin="0,0,0,20"/>
+                       FontWeight="Bold"
+                       Margin="0,0,0,10"/>
 
-            <!-- Beschrijving -->
-            <TextBlock x:Name="DescriptionText"
-                       Text="Details over bouwjaar, type, status..."
-                       Foreground="#DDD"
-                       FontSize="14"
+            <TextBlock Text="Bouwjaar:" Foreground="White" FontWeight="Bold"/>
+            <TextBlock x:Name="BouwjaarTextBlock"
+                       Foreground="#CCC"
+                       Margin="0,0,0,10"/>
+
+            <TextBlock Text="Status:" Foreground="White" FontWeight="Bold"/>
+            <TextBlock x:Name="StatusTextBlock"
+                       Foreground="#229955"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,10"/>
+
+            <TextBlock Text="Omschrijving:" Foreground="White" FontWeight="Bold"/>
+            <TextBlock x:Name="OmschrijvingTextBlock"
                        TextWrapping="Wrap"
-                       Margin="0,0,0,20"/>
-            <TextBlock x:Name="OmschrijvingText"
-           Text="..."
-           TextWrapping="Wrap"
-           FontSize="14"
-           Foreground="#CCC"
-           Margin="0,0,0,20"/>
+                       Foreground="#888"
+                       Margin="0,0,0,10"
+                       FontSize="13"/>
 
-
-            <!-- Actieknop -->
-            <Button Content="Contacteer verkoper"
-                    Height="45"
-                    Background="#FFEF6C00"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    BorderThickness="0"
-                    Cursor="Hand"/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

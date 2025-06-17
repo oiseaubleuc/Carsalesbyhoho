@@ -11,7 +11,6 @@
         WindowStartupLocation="CenterScreen">
 
     <Border Background="#121212" CornerRadius="30" BorderBrush="Gray" BorderThickness="1">
-
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -19,10 +18,12 @@
                 <RowDefinition Height="70" />
             </Grid.RowDefinitions>
 
-           
-
-            <!-- 📦 Main view content -->
-            <ContentControl x:Name="MainContent" Grid.Row="1" Margin="10"/>
+            <!-- ✅ ScrollFix rond Content -->
+            <ScrollViewer Grid.Row="1"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+                <ContentControl x:Name="MainContent" Margin="10"/>
+            </ScrollViewer>
 
             <!-- 🧭 Bottom navigation bar -->
             <StackPanel Orientation="Horizontal"
@@ -43,6 +44,10 @@
 
                 <Button Content="👥" Width="60" FontSize="24"
                         Click="LoginButton_Click"
+                        Style="{StaticResource BottomNavButtonStyle}" />
+
+                <Button Content="🛠" Width="60" FontSize="24"
+                        Click="AdminButton_Click"
                         Style="{StaticResource BottomNavButtonStyle}" />
             </StackPanel>
         </Grid>

@@ -3,12 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:views="clr-namespace:Carsalesbyhoho.Views"
              mc:Ignorable="d"
              d:DesignHeight="640" d:DesignWidth="360"
              Background="#FF1E1E1E">
 
-    <ScrollViewer>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="20" VerticalAlignment="Top" Orientation="Vertical">
 
             <TextBlock Text="Beschikbare auto’s"
@@ -17,45 +16,7 @@
                        Foreground="White"
                        Margin="0,0,0,20"/>
 
-            <!-- Eén voorbeeld item -->
-            <Border Background="#2A2A2A"
-                    CornerRadius="10"
-                    Padding="10"
-                    Margin="0,0,0,15">
-                <DockPanel>
-                    <Image Source="/Images/cars/sample1.png"
-                           Width="80" Height="60"
-                           Margin="0,0,10,0"
-                           DockPanel.Dock="Left"
-                           Stretch="UniformToFill"/>
-
-                    <StackPanel>
-                        <TextBlock Text="Porsche 911 Carrera"
-                                   FontSize="16"
-                                   FontWeight="SemiBold"
-                                   Foreground="White"/>
-                        <TextBlock Text="GBP 98,700.00"
-                                   FontSize="14"
-                                   Foreground="#FFEF6C00"
-                                   FontWeight="Bold"/>
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                            <Border Background="#229955"
-                                    CornerRadius="5"
-                                    Padding="4,1"
-                                    Margin="0,0,10,0">
-                                <TextBlock Text="New"
-                                           Foreground="White"
-                                           FontSize="12"/>
-                            </Border>
-                            <TextBlock Text="2021"
-                                       Foreground="#BBB"
-                                       FontSize="12"/>
-                        </StackPanel>
-                    </StackPanel>
-                </DockPanel>
-            </Border>
-
-            <ItemsControl ItemsSource="{Binding Autos}">
+            <ItemsControl x:Name="CarsList">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border Background="#2A2A2A"
@@ -63,17 +24,21 @@
                                 Padding="10"
                                 Margin="0,0,0,15">
                             <DockPanel>
-                                <Image Source="{Binding ImagePath}"
-                                       Width="80" Height="60"
+                                <Image Width="80"
+                                       Height="60"
                                        Margin="0,0,10,0"
                                        DockPanel.Dock="Left"
-                                       Stretch="UniformToFill"/>
+                                       Stretch="UniformToFill">
+                                    <Image.Source>
+                                        <BitmapImage UriSource="{Binding ImagePath, FallbackValue='/Images/cars/default.png'}"/>
+                                    </Image.Source>
+                                </Image>
                                 <StackPanel>
                                     <TextBlock Text="{Binding Model}"
                                                FontSize="16"
                                                FontWeight="SemiBold"
                                                Foreground="White"/>
-                                    <TextBlock Text="{Binding Prijs, StringFormat='GBP {0:N2}'}"
+                                    <TextBlock Text="{Binding Prijs, StringFormat='€ {0:N2}'}"
                                                FontSize="14"
                                                Foreground="#FFEF6C00"
                                                FontWeight="Bold"/>
@@ -104,17 +69,10 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
 
-            <Button Content="Bekijk details"
-                    Margin="0,10,0,0"
-                    Padding="6,3"
-                    FontSize="12"
-                    Background="#FFEF6C00"
-                    Foreground="White"
-                    Click="DetailsButton_Click"/>
-
-            <!-- ✅ CORRECTE AutoDetails UserControl -->
-            <views:AutoDetails x:Name="AutoDetails" Visibility="Collapsed" Margin="0,30,0,0"/>
-
+            <!-- Wordt niet gebruikt tenzij je inline details toont -->
+            <ContentControl x:Name="AutoDetailsContainer"
+                            Margin="0,30,0,0"
+                            Visibility="Collapsed"/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

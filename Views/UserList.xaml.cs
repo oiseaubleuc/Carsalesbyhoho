@@ -10,29 +10,37 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using System.Linq;
 using System.Windows.Controls;
-using Carsalesbyhoho.Models;
+using Carsalesbyhoho.Data;
 
 namespace Carsalesbyhoho.Views
 {
-    public partial class VisitorView : UserControl
+    public partial class UserList : UserControl
     {
-        public VisitorView()
+        public UserList()
         {
             InitializeComponent();
+            LoadUsers();
         }
 
-        private void BekijkDetails_Click(object sender, RoutedEventArgs e)
+        private void LoadUsers()
         {
-            var button = sender as FrameworkElement;
-            if (button?.Tag is Auto geselecteerdeAuto)
+            using (var context = new AppDbContext())
             {
-                var detailsWindow = new AutoDetailsWindow(geselecteerdeAuto);
-                detailsWindow.Owner = Window.GetWindow(this);
-                detailsWindow.ShowDialog();
+                var users = context.Users.ToList();
+                UsersListControl.ItemsSource = users;
             }
         }
+
+
+        private void UsersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
     }
 }

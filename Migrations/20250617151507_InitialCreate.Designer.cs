@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Carsalesbyhoho.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250607024617_InitialCreate")]
+    [Migration("20250617151507_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -26,27 +26,43 @@ namespace Carsalesbyhoho.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("AfbeeldingUrl")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("AutoTypeId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Bouwjaar")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("MerkId")
+                    b.Property<int>("BrandId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Model")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Omschrijving")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("Prijs")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AutoTypeId");
 
-                    b.HasIndex("MerkId");
+                    b.HasIndex("BrandId");
 
                     b.ToTable("Autos");
                 });
@@ -64,6 +80,65 @@ namespace Carsalesbyhoho.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AutoTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Omschrijving = "SUV"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Omschrijving = "Break"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Omschrijving = "Sedan"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Omschrijving = "Hatchback"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Omschrijving = "Cabriolet"
+                        });
+                });
+
+            modelBuilder.Entity("Carsalesbyhoho.Models.Brand", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Naam")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Brands");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Naam = "Diesel"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Naam = "Benzine"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Naam = "Elektrisch"
+                        });
                 });
 
             modelBuilder.Entity("Carsalesbyhoho.Models.Klant", b =>
@@ -85,19 +160,36 @@ namespace Carsalesbyhoho.Migrations
                     b.ToTable("Klanten");
                 });
 
-            modelBuilder.Entity("Carsalesbyhoho.Models.Merk", b =>
+            modelBuilder.Entity("Carsalesbyhoho.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Naam")
+                    b.Property<string>("Email")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Gebruikersnaam")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("GeregistreerdOp")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Rol")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Wachtwoord")
+                        .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Merken");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Carsalesbyhoho.Models.Verkoop", b =>
@@ -135,15 +227,15 @@ namespace Carsalesbyhoho.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Carsalesbyhoho.Models.Merk", "Merk")
+                    b.HasOne("Carsalesbyhoho.Models.Brand", "Brand")
                         .WithMany("Autos")
-                        .HasForeignKey("MerkId")
+                        .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("AutoType");
 
-                    b.Navigation("Merk");
+                    b.Navigation("Brand");
                 });
 
             modelBuilder.Entity("Carsalesbyhoho.Models.Verkoop", b =>
@@ -175,14 +267,14 @@ namespace Carsalesbyhoho.Migrations
                     b.Navigation("Autos");
                 });
 
+            modelBuilder.Entity("Carsalesbyhoho.Models.Brand", b =>
+                {
+                    b.Navigation("Autos");
+                });
+
             modelBuilder.Entity("Carsalesbyhoho.Models.Klant", b =>
                 {
                     b.Navigation("Verkopen");
-                });
-
-            modelBuilder.Entity("Carsalesbyhoho.Models.Merk", b =>
-                {
-                    b.Navigation("Autos");
                 });
 #pragma warning restore 612, 618
         }

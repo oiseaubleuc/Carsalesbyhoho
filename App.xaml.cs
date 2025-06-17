@@ -14,7 +14,6 @@ namespace Carsalesbyhoho
 
             using var context = new AppDbContext();
 
-            // Stap 1: Brands
             if (!context.Brands.Any())
             {
                 context.Brands.AddRange(
@@ -24,7 +23,6 @@ namespace Carsalesbyhoho
                 );
             }
 
-            // Stap 2: AutoTypes
             if (!context.AutoTypes.Any())
             {
                 context.AutoTypes.AddRange(
@@ -34,10 +32,8 @@ namespace Carsalesbyhoho
                 );
             }
 
-            // FK-tabellen eerst opslaan
             context.SaveChanges();
 
-            // Stap 3: Autos
             if (!context.Autos.Any())
             {
                 var autos = new[]

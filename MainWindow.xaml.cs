@@ -48,9 +48,20 @@ namespace Carsalesbyhoho
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            var login = new LoginWindow();
-            login.ShowDialog();
+            MainContent.Content = new Login();
         }
+
+        private void RegisterLink_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).MainContent.Content = new Register();
+        }
+
+        private void AdminButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new AdminDashboard();
+        }
+
+
 
         //private void FavoritesMenu_Click(object sender, RoutedEventArgs e)
         //{

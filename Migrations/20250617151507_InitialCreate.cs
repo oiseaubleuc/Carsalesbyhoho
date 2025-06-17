@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Carsalesbyhoho.Migrations
 {
     /// <inheritdoc />
@@ -25,6 +27,19 @@ namespace Carsalesbyhoho.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Brands",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Naam = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Brands", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Klanten",
                 columns: table => new
                 {
@@ -39,16 +54,20 @@ namespace Carsalesbyhoho.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Merken",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Naam = table.Column<string>(type: "TEXT", nullable: false)
+                    Gebruikersnaam = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
+                    Wachtwoord = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
+                    Email = table.Column<string>(type: "TEXT", nullable: false),
+                    Rol = table.Column<string>(type: "TEXT", nullable: false),
+                    GeregistreerdOp = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Merken", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -60,8 +79,12 @@ namespace Carsalesbyhoho.Migrations
                     Model = table.Column<string>(type: "TEXT", nullable: false),
                     Bouwjaar = table.Column<int>(type: "INTEGER", nullable: false),
                     Prijs = table.Column<decimal>(type: "TEXT", nullable: false),
-                    MerkId = table.Column<int>(type: "INTEGER", nullable: false),
-                    AutoTypeId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Omschrijving = table.Column<string>(type: "TEXT", nullable: false),
+                    BrandId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Status = table.Column<string>(type: "TEXT", nullable: false),
+                    AutoTypeId = table.Column<int>(type: "INTEGER", nullable: false),
+                    ImagePath = table.Column<string>(type: "TEXT", nullable: false),
+                    AfbeeldingUrl = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -73,9 +96,9 @@ namespace Carsalesbyhoho.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Autos_Merken_MerkId",
-                        column: x => x.MerkId,
-                        principalTable: "Merken",
+                        name: "FK_Autos_Brands_BrandId",
+                        column: x => x.BrandId,
+                        principalTable: "Brands",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -108,15 +131,37 @@ namespace Carsalesbyhoho.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "AutoTypes",
+                columns: new[] { "Id", "Omschrijving" },
+                values: new object[,]
+                {
+                    { 1, "SUV" },
+                    { 2, "Break" },
+                    { 3, "Sedan" },
+                    { 4, "Hatchback" },
+                    { 5, "Cabriolet" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Brands",
+                columns: new[] { "Id", "Naam" },
+                values: new object[,]
+                {
+                    { 1, "Diesel" },
+                    { 2, "Benzine" },
+                    { 3, "Elektrisch" }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Autos_AutoTypeId",
                 table: "Autos",
                 column: "AutoTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Autos_MerkId",
+                name: "IX_Autos_BrandId",
                 table: "Autos",
-                column: "MerkId");
+                column: "BrandId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Verkopen_AutoId",
@@ -133,6 +178,9 @@ namespace Carsalesbyhoho.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Users");
+
+            migrationBuilder.DropTable(
                 name: "Verkopen");
 
             migrationBuilder.DropTable(
@@ -145,7 +193,7 @@ namespace Carsalesbyhoho.Migrations
                 name: "AutoTypes");
 
             migrationBuilder.DropTable(
-                name: "Merken");
+                name: "Brands");
         }
     }
 }

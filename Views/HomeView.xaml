@@ -3,77 +3,71 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Background="#FF1E1E1E">
 
-    <ScrollViewer>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="20" VerticalAlignment="Top">
 
-            <!-- Welkomtitel -->
+            <!-- Titel -->
             <TextBlock Text="Welkom bij Car Marketplace"
                        FontSize="24"
                        FontWeight="Bold"
                        Foreground="White"
-                       TextWrapping="Wrap"
                        Margin="0,0,0,20"/>
 
-            <!-- Zoekveld -->
-            <TextBlock Text="Zoek naar een auto"
-                       FontSize="14"
-                       Foreground="#CCC"
-                       Margin="0,0,0,5"/>
-            <TextBox Height="35"
-                     Padding="10"
+            <!-- Zoekbalk -->
+            <TextBox x:Name="SearchBox"
+                     Height="35"
                      FontSize="14"
                      Background="White"
                      Foreground="#333"
-                     BorderBrush="#CCC"
-                     Margin="0,0,0,20"/>
+                     Margin="0,0,0,10"
+                     TextChanged="FilterChanged"/>
 
-            <!-- Sectietitel -->
-            <TextBlock Text="Aanbevolen auto's"
-                       FontSize="18"
-                       FontWeight="SemiBold"
-                       Foreground="White"
-                       Margin="0,0,0,10"/>
+            <!-- Filters -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                <ComboBox x:Name="BrandFilterBox"
+                          Width="160"
+                          DisplayMemberPath="Naam"
+                          SelectionChanged="FilterChanged"
+                          Margin="0,0,10,0"/>
+                <ComboBox x:Name="TypeFilterBox"
+                          Width="160"
+                          DisplayMemberPath="Omschrijving"
+                          SelectionChanged="FilterChanged"/>
+            </StackPanel>
 
-            <!-- Auto-card 1 -->
-            <Border Background="#333"
-                    CornerRadius="10"
-                    Padding="10"
-                    Margin="0,0,0,10">
-                <StackPanel>
-                    <TextBlock Text="Tesla Model 3"
-                               FontSize="16"
-                               Foreground="White"/>
-                    <TextBlock Text="€ 42.500"
-                               FontSize="14"
-                               Foreground="#BBB"/>
-                </StackPanel>
-            </Border>
+            <!-- Lijst van gefilterde auto's -->
+            <ItemsControl x:Name="FilteredCarList">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="#2A2A2A"
+                                CornerRadius="10"
+                                Padding="10"
+                                Margin="0,0,0,15">
+                            <DockPanel>
+                                <Image Source="{Binding ImagePath}"
+                                       Width="80" Height="60"
+                                       Margin="0,0,10,0"
+                                       DockPanel.Dock="Left"
+                                       Stretch="UniformToFill"/>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Model}"
+                                               FontSize="16"
+                                               FontWeight="SemiBold"
+                                               Foreground="White"/>
+                                    <TextBlock Text="{Binding Prijs, StringFormat='€ {0:N2}'}"
+                                               FontSize="14"
+                                               Foreground="#FFEF6C00"/>
+                                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                        <TextBlock Text="{Binding Status}" Foreground="#CCC" Margin="0,0,10,0"/>
+                                        <TextBlock Text="{Binding Bouwjaar}" Foreground="#999"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DockPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
-            <!-- Auto-card 2 -->
-            <Border Background="#333"
-                    CornerRadius="10"
-                    Padding="10"
-                    Margin="0,0,0,10">
-                <StackPanel>
-                    <TextBlock Text="BMW 3 Serie"
-                               FontSize="16"
-                               Foreground="White"/>
-                    <TextBlock Text="€ 28.000"
-                               FontSize="14"
-                               Foreground="#BBB"/>
-                </StackPanel>
-            </Border>
-
-            <!-- Call-to-action knop -->
-            <Button Content="Bekijk alle auto's"
-                    Height="40"
-                    FontSize="16"
-                    FontWeight="Bold"
-                    Background="#FFEF6C00"
-                    Foreground="White"
-                    BorderThickness="0"
-                    Margin="0,20,0,0"
-                    Cursor="Hand"/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

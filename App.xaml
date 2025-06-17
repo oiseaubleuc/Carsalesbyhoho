@@ -5,6 +5,8 @@
 
     <Application.Resources>
 
+
+
         <!-- 🎨 Kleurenpalet -->
         <SolidColorBrush x:Key="PrimaryBlack" Color="#000000" />
         <SolidColorBrush x:Key="PrimaryWhite" Color="#FFFFFF" />

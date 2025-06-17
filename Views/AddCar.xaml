@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="Carsalesbyhoho.Views.AddCar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#FF1E1E1E">
+
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="10">
+            <StackPanel Margin="10" VerticalAlignment="Top">
+                <TextBlock Text="Nieuwe auto toevoegen"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           Margin="0,0,0,20"/>
+
+                <TextBlock Text="Merk" Foreground="White"/>
+                <TextBox x:Name="MerkBox" Margin="0,5,0,10" FontSize="14"/>
+
+                <TextBlock Text="Type" Foreground="White"/>
+                <ComboBox x:Name="TypeBox" Margin="0,5,0,10"
+                          DisplayMemberPath="Omschrijving" SelectedValuePath="Id"/>
+
+                <TextBlock Text="Brandstof" Foreground="White"/>
+                <ComboBox x:Name="BrandstofBox" Margin="0,5,0,10"
+                          DisplayMemberPath="Naam" SelectedValuePath="Id"/>
+
+                <TextBlock Text="Model" Foreground="White"/>
+                <TextBox x:Name="ModelBox" Margin="0,5,0,10"/>
+
+                <TextBlock Text="Prijs (€)" Foreground="White"/>
+                <TextBox x:Name="PrijsBox" Margin="0,5,0,10"/>
+
+                <TextBlock Text="Bouwjaar" Foreground="White"/>
+                <TextBox x:Name="BouwjaarBox" Margin="0,5,0,10"/>
+
+                <TextBlock Text="Omschrijving" Foreground="White"/>
+                <TextBox x:Name="OmschrijvingBox"
+                         MaxLength="250"
+                         Text="Bijvoorbeeld: Deze sportwagen is perfect onderhouden..."
+                         Foreground="#888" Background="#333"
+                         BorderThickness="0" Padding="10"
+                         TextWrapping="Wrap" AcceptsReturn="True"
+                         Height="80" Margin="0,5,0,10"/>
+
+                <TextBlock Text="Status" Foreground="White"/>
+                <ComboBox x:Name="StatusBox" Margin="0,5,0,20">
+                    <ComboBoxItem Content="Nieuw"/>
+                    <ComboBoxItem Content="Tweedehands"/>
+                </ComboBox>
+
+                <TextBlock Text="Afbeelding" Foreground="White"/>
+                <Button Content="Kies afbeelding"
+                        Click="SelectImage_Click"
+                        Margin="0,5,0,10"/>
+                <TextBlock x:Name="SelectedImagePath"
+                           Foreground="#CCC"
+                           FontSize="12"
+                           TextWrapping="Wrap"/>
+
+                <Button Content="Auto opslaan"
+                        Click="SaveButton_Click"
+                        Background="#FFEF6C00"
+                        Foreground="White"
+                        FontWeight="Bold"
+                        Height="40"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
