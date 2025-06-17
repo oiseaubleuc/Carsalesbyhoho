@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Carsalesbyhoho.Views.CarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="640" d:DesignWidth="360"
+             Background="#FF1E1E1E">
+
+    <ScrollViewer>
+        <StackPanel Margin="20" VerticalAlignment="Top" Orientation="Vertical">
+
+            <TextBlock Text="Beschikbare auto’s"
+                       FontSize="22"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       Margin="0,0,0,20"/>
+
+            <!-- Eén voorbeeld item (herhaal via databinding) -->
+            <Border Background="#2A2A2A"
+                    CornerRadius="10"
+                    Padding="10"
+                    Margin="0,0,0,15">
+                <DockPanel>
+                    <!-- Auto-afbeelding -->
+                    <Image Source="/Images/cars/sample1.png"
+                           Width="80" Height="60"
+                           Margin="0,0,10,0"
+                           DockPanel.Dock="Left"
+                           Stretch="UniformToFill"/>
+
+                    <StackPanel>
+                        <TextBlock Text="Porsche 911 Carrera"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Foreground="White"/>
+                        <TextBlock Text="GBP 98,700.00"
+                                   FontSize="14"
+                                   Foreground="#FFEF6C00"
+                                   FontWeight="Bold"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <Border Background="#229955"
+                                    CornerRadius="5"
+                                    Padding="4,1"
+                                    Margin="0,0,10,0">
+                                <TextBlock Text="New"
+                                           Foreground="White"
+                                           FontSize="12"/>
+                            </Border>
+                            <TextBlock Text="2021"
+                                       Foreground="#BBB"
+                                       FontSize="12"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
+            <!-- Herhaal bovenstaand Border-blok per auto-item -->
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
