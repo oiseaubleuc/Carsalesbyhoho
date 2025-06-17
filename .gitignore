@@ -1,0 +1,15 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build folders
+bin/
+obj/
+
+# Database bestanden
+*.db
+*.sqlite
+
+# Logs of andere tijdelijke bestanden
+*.log

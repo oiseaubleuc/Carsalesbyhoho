@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="Carsalesbyhoho.Views.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#FF1E1E1E">
+
+    <ScrollViewer>
+        <StackPanel Margin="20" VerticalAlignment="Top">
+
+            <!-- Welkomtitel -->
+            <TextBlock Text="Welkom bij Car Marketplace"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       TextWrapping="Wrap"
+                       Margin="0,0,0,20"/>
+
+            <!-- Zoekveld -->
+            <TextBlock Text="Zoek naar een auto"
+                       FontSize="14"
+                       Foreground="#CCC"
+                       Margin="0,0,0,5"/>
+            <TextBox Height="35"
+                     Padding="10"
+                     FontSize="14"
+                     Background="White"
+                     Foreground="#333"
+                     BorderBrush="#CCC"
+                     Margin="0,0,0,20"/>
+
+            <!-- Sectietitel -->
+            <TextBlock Text="Aanbevolen auto's"
+                       FontSize="18"
+                       FontWeight="SemiBold"
+                       Foreground="White"
+                       Margin="0,0,0,10"/>
+
+            <!-- Auto-card 1 -->
+            <Border Background="#333"
+                    CornerRadius="10"
+                    Padding="10"
+                    Margin="0,0,0,10">
+                <StackPanel>
+                    <TextBlock Text="Tesla Model 3"
+                               FontSize="16"
+                               Foreground="White"/>
+                    <TextBlock Text="€ 42.500"
+                               FontSize="14"
+                               Foreground="#BBB"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Auto-card 2 -->
+            <Border Background="#333"
+                    CornerRadius="10"
+                    Padding="10"
+                    Margin="0,0,0,10">
+                <StackPanel>
+                    <TextBlock Text="BMW 3 Serie"
+                               FontSize="16"
+                               Foreground="White"/>
+                    <TextBlock Text="€ 28.000"
+                               FontSize="14"
+                               Foreground="#BBB"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Call-to-action knop -->
+            <Button Content="Bekijk alle auto's"
+                    Height="40"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Background="#FFEF6C00"
+                    Foreground="White"
+                    BorderThickness="0"
+                    Margin="0,20,0,0"
+                    Cursor="Hand"/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
