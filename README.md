@@ -1,7 +1,15 @@
-# Carsalesbyhoho
+<h1 align="center">Carsalesbyhoho</h1>
+<p align="center">
+  <b>Desktop application for managing car sales</b><br/>
+  Cars, brands, customers and sales in a clean WPF interface built on MVVM and Entity Framework Core.
+</p>
 
-Carsalesbyhoho is a WPF desktop application built in C# for managing car sales.  
-The application focuses on structured data management, relational databases, and a clean desktop user interface.
+<p align="center">
+  <img src="https://img.shields.io/badge/C%23-WPF-512BD4?style=flat-square&logo=dotnet&logoColor=white" />
+  <img src="https://img.shields.io/badge/.NET-8-512BD4?style=flat-square&logo=dotnet&logoColor=white" />
+  <img src="https://img.shields.io/badge/MVVM-CommunityToolkit-555?style=flat-square" />
+  <img src="https://img.shields.io/badge/EF%20Core-SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white" />
+</p>
 
 ---
 
@@ -44,3 +52,6 @@ The application focuses on structured data management, relational databases, and
 - .NET SDK 7.0 or higher
 - Visual Studio (recommended)
 
+---
+
+<p align="center">Built by <a href="https://github.com/oiseaubleuc">Hoho</a> · Belgium</p>
